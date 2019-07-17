@@ -7,6 +7,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+  display:none;
 }
 .power__container {
   width: 200px;

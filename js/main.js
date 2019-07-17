@@ -1,5 +1,8 @@
 $(document).ready(function () {
-  const audioCtx = new AudioContext();
+  var AudioContext = window.AudioContext || window.webkitAudioContext || false;
+
+
+
   let bpm = 66 / 120 * 1000 // 120bpm in ms 500ms
   
   
@@ -8,6 +11,9 @@ $(document).ready(function () {
 
   toggle.on('change',function(v) {
     v ?  start() : stop();
+    if (AudioContext) {
+      var context = new AudioContext();
+    }
   })
   
 
@@ -80,9 +86,6 @@ $(document).ready(function () {
     sequencer.next();
   })
 
-
-
-
   sequencer.on('step', function (v) {
     if (v[0] === 1) {
       sound1.play()
@@ -97,6 +100,7 @@ $(document).ready(function () {
       sound4.play()
     }
   })
+  
   dial.on('change',function(v) {
     bpm = v;
     console.log(bpm);
