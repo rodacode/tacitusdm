@@ -5,6 +5,8 @@ $(document).ready(function () {
 
   let bpm = 66 / 120 * 1000 // 120bpm in ms 500ms
   
+  Nexus.colors.accent = "#ff0"
+  Nexus.colors.fill = "#333"
   
   //POWER ON/OFF
   let toggle = new Nexus.Toggle('#power')
@@ -16,8 +18,6 @@ $(document).ready(function () {
     }
   })
   
-
-
   //TEMPO DIAL
   let dial = new Nexus.Dial('#dial',{
     'size': [45,45],
@@ -28,6 +28,7 @@ $(document).ready(function () {
     'step': 1,
     'value': 120
     })
+
 
   //TEMPO NUMBER
   var number = new Nexus.Number('#number')
@@ -81,6 +82,15 @@ $(document).ready(function () {
     onend: function () {
     }
   });
+  let sound5 = new Howl({
+    src: ['./samples/hh2.wav'],
+    autoplay: false,
+    loop: false,
+    volume: 0.5,
+    buffer: true,
+    onend: function () {
+    }
+  });
 
   var interval = new Nexus.Interval(function() {
     sequencer.next();
@@ -99,6 +109,9 @@ $(document).ready(function () {
     if (v[3] === 1) {
       sound4.play()
     }
+    if (v[4] === 1) {
+      sound5.play()
+    }
   })
   
   dial.on('change',function(v) {
@@ -115,5 +128,7 @@ $(document).ready(function () {
   function stop () {
     sequencer.stop();
   }
+
+
 });
 

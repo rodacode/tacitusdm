@@ -1,3 +1,10 @@
+body {
+  background-color: black;
+  color: #fff;
+}
+.title {
+  font-size: 4rem;
+}
 .main__container {
   text-align: center;
   margin: 20px auto;
