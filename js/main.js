@@ -1,7 +1,5 @@
 $(document).ready(function () {
-  var AudioContext = window.AudioContext || window.webkitAudioContext || false;
-
-
+  var AudioContext = window.AudioContext || window.webkitAudioContext;
 
   let bpm = 66 / 120 * 1000 // 120bpm in ms 500ms
   
@@ -13,9 +11,6 @@ $(document).ready(function () {
 
   toggle.on('change',function(v) {
     v ?  start() : stop();
-    if (AudioContext) {
-      var context = new AudioContext();
-    }
   })
   
   //TEMPO DIAL
@@ -120,6 +115,7 @@ $(document).ready(function () {
   })
 
   function start () {
+    var context = new AudioContext();
     // Change the interval time
     interval.ms(bpm);
     interval.start();
